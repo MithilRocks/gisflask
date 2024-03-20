@@ -31,3 +31,5 @@ http://192.168.207.2:5000
 |  `row` | `int` | **Required**       |    
 
 Here we have three values. The zoom, column and row. These values can be used to bring the tile of your choice. A simple map is then plot in the browser.
+
+![Sample Tile](static/sample.png)
