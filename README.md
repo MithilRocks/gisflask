@@ -20,6 +20,8 @@ http://192.168.207.2:5000
 
 ## Usage
 
+#### Endpoint:
+
 ```
   GET /tile?zoom=10&col=501&row=684
 ```
@@ -31,5 +33,18 @@ http://192.168.207.2:5000
 |  `row` | `int` | **Required**       |    
 
 Here we have three values. The zoom, column and row. These values can be used to bring the tile of your choice. A simple map is then plot in the browser.
-
 ![Sample Tile](static/sample.png)
+
+#### Unit Tests:
+You can run the unit tests by the following command. The unit tests are also invoked when the docker image is being created. If the tests fail, the image and container won't be created/updated.
+
+```
+python -m unittest tests.py
+```
+In case you want to run the unittest inside the container:
+
+```
+docker exec -it flask python -m unittest tests.py
+```
+
+
