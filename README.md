@@ -20,7 +20,7 @@ http://192.168.207.2:5000
 
 ## Usage
 
-```http
+```
   GET /tile?zoom=10&col=501&row=684
 ```
 
