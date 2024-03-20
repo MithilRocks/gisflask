@@ -32,4 +32,4 @@ ENV MBTILES=static/opgrsp_gb.mbtiles
 RUN python -m unittest tests.py -v
 
 # Run the flask app when the container launches
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--port=5000"]

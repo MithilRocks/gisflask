@@ -15,7 +15,7 @@ docker-compose up --build -d
 ```
 The flask app is now running at the following:
 ```
-http://192.168.207.2:5000
+http://127.0.0.1:5000/tile?zoom=10&col=501&row=684
 ```
 
 ## Usage
