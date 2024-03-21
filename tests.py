@@ -2,7 +2,7 @@ import main
 import os
 from unittest import mock, TestCase, main as unittest_main
 
-class FlaskTestCase(TestCase):
+class GisFlaskTest(TestCase):
 
     def setUp(self):
         self.app = main.app.test_client()
@@ -11,7 +11,8 @@ class FlaskTestCase(TestCase):
     @mock.patch.dict('os.environ', {'MBTILES': 'static/opgrsp_gb.mbtiles'})
     def test_tile_status_code(self):
         '''
-        Test if the application returns 200 when a tile is found
+        Test if the application returns 200 when a tile is found.
+        This test is using the opgrsp_gb.mbtiles file which is included in the repository.
         '''
 
         # sends HTTP GET request to the application
@@ -24,6 +25,7 @@ class FlaskTestCase(TestCase):
     def test_tile_not_found_status_code(self):
         '''
         Test if the application returns 404 when a tile is not found
+        This test is using the opgrsp_gb.mbtiles file which is included in the repository.
         '''
 
         # sends HTTP GET request to the application
@@ -36,6 +38,7 @@ class FlaskTestCase(TestCase):
     def test_tile_no_params(self):
         '''
         Test if the application returns 200 when no parameters are provided
+        This test is using the opgrsp_gb.mbtiles file which is included in the repository.
         '''
 
         # sends HTTP GET request to the application
@@ -48,6 +51,7 @@ class FlaskTestCase(TestCase):
     def test_mbtiles_connection(self):
         '''
         Test if the application returns 500 when the mbtiles file is not found
+        This test is using a nonexistent.mbtiles file which is not included in the repository.
         '''
 
         # sends HTTP GET request to the application
@@ -63,6 +67,7 @@ class FlaskTestCase(TestCase):
     def test_tile_table_not_found(self):
         '''
         Test if the application returns 500 when the tiles table is not found
+        This test is using the no_table.mbtiles file which is included in the repository but does not have a tiles table.
         '''
 
         # sends HTTP GET request to the application
