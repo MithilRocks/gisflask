@@ -2,10 +2,10 @@
 
 A sample project demonstrating a Flask-based RESTful API to serve spatial data from an Open Source Data Hub dataset. This project includes:
 
-A single REST endpoint to return spatial data (e.g., a raster tile)
-Example code for data visualization
-Unit tests to ensure code correctness
-Clear comments to explain the code functionality
+- A single REST endpoint to return spatial data (e.g., a raster tile)
+- Example code for data visualization
+- Unit tests to ensure code correctness
+- Clear comments to explain the code functionality
 
 ## Table of Contents
 
