@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="tile-block">
+        {% if tiles %}
+            <h1>List of tiles</h1>
+            <ol class="tile-list">
+                {% for tile in tiles %}
+                    <li><a href="/tile?zoom={{ tile[0] }}&col={{ tile[1] }}&row={{ tile[2] }}">{{ tile }}</li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+        
+        {% if tile_info %}
+            <h1>Tile information</h1>
+            <a href="/tile"><- Go back</a>
+            <br>
+            <img src="data:image/png;base64,{{ tile_info }}">
+        {% endif %}
+    </div>
+
+{% endblock %}

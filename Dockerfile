@@ -25,9 +25,6 @@ EXPOSE 5000
 # Define environment variable
 ENV FLASK_APP=main.py
 
-# Define environment variable
-ENV MBTILES=static/opgrsp_gb.mbtiles
-
 # Run the tests
 RUN python -m unittest tests.py -v
 

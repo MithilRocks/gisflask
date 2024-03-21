@@ -5,7 +5,7 @@ import mapbox_vector_tile as mvt
 import geopandas as gpd
 import json
 import matplotlib
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, render_template
 import base64
 from os import environ
 
@@ -33,9 +33,13 @@ def index():
     col = request.args.get('col')
     row = request.args.get('row')
 
-    # return a 400 error if the tile info is not passed as parameters
+    # return list of tiles if no parameters are provided
     if not zoom or not col or not row:
-        return make_response('No tile info passed as parameters', 400)
+        cursor.execute(f'SELECT zoom_level, tile_column, tile_row FROM tiles WHERE zoom_level=10 LIMIT 50')
+        tiles = cursor.fetchall()
+        if not tiles:
+            return make_response('No tiles found', 404)
+        return render_template('tile.html', tiles=tiles), 200
 
     try:
         # get the tile data
@@ -78,11 +82,11 @@ def index():
     # plot the geodataframe and save it as a base64 string
     try:
         buf = BytesIO()
-        feature_df.plot(aspect=1, figsize=(10,10), cmap=cmap).get_figure().savefig(buf, format='png')
+        feature_df.plot(aspect=1, figsize=(5,5), cmap=cmap).get_figure().savefig(buf, format='png')
         data = base64.b64encode(buf.getbuffer()).decode('utf-8')
     except:
         return make_response('Error plotting the tile', 500)
-    return make_response(f'<img src="data:image/png;base64,{data}">', 200)
+    return render_template('tile.html', tile_info=data), 200
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

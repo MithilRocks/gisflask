@@ -1,5 +1,4 @@
 import main
-import json
 import os
 from unittest import mock, TestCase, main as unittest_main
 
@@ -9,6 +8,7 @@ class FlaskTestCase(TestCase):
         self.app = main.app.test_client()
         self.app.testing = True 
 
+    @mock.patch.dict('os.environ', {'MBTILES': 'static/opgrsp_gb.mbtiles'})
     def test_tile_status_code(self):
         '''
         Test if the application returns 200 when a tile is found
@@ -20,6 +20,7 @@ class FlaskTestCase(TestCase):
         # assert the status code of the response
         self.assertEqual(result.status_code, 200)
 
+    @mock.patch.dict('os.environ', {'MBTILES': 'static/opgrsp_gb.mbtiles'})
     def test_tile_not_found_status_code(self):
         '''
         Test if the application returns 404 when a tile is not found
@@ -31,16 +32,17 @@ class FlaskTestCase(TestCase):
         # assert the status code of the response
         self.assertEqual(result.status_code, 404) 
 
+    @mock.patch.dict('os.environ', {'MBTILES': 'static/opgrsp_gb.mbtiles'})
     def test_tile_no_params(self):
         '''
-        Test if the application returns 400 when no parameters are provided
+        Test if the application returns 200 when no parameters are provided
         '''
 
         # sends HTTP GET request to the application
         result = self.app.get('/tile') 
 
         # assert the status code of the response
-        self.assertEqual(result.status_code, 400)
+        self.assertEqual(result.status_code, 200)
     
     @mock.patch.dict('os.environ', {'MBTILES': 'static/nonexistent.mbtiles'})
     def test_mbtiles_connection(self):

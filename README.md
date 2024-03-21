@@ -13,14 +13,21 @@ Build the image and container in detached mode:
 ```
 docker-compose up --build -d
 ```
+
 The flask app is now running at the following:
+
 ```
-http://127.0.0.1:5000/tile?zoom=10&col=501&row=684
+http://127.0.0.1:5000/tile
 ```
 
 ## Usage
 
 #### Endpoint:
+
+```
+  GET /tile
+```
+This will give us a list of tiles. Clicking on any one of them will lead us to showing that tile.
 
 ```
   GET /tile?zoom=10&col=501&row=684
@@ -33,7 +40,7 @@ http://127.0.0.1:5000/tile?zoom=10&col=501&row=684
 |  `row` | `int` | **Required**       |    
 
 Here we have three values. The zoom, column and row. These values can be used to bring the tile of your choice. A simple map is then plot in the browser.
-![Sample Tile](static/sample.png)
+
 
 #### Unit Tests:
 You can run the unit tests by the following command. The unit tests are also invoked when the docker image is being created. If the tests fail, the image and container won't be created/updated.
